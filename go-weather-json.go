@@ -8,7 +8,7 @@ import (
     "net/http"
 )
 
-// Weather Hacks API : city is Tokyo(130010)
+// Weather Hacks API : example city is Tokyo(130010)
 var URI string = "http://weather.livedoor.com/forecast/webservice/json/v1?city=130010"
 
 type Forecasts struct {
@@ -52,7 +52,7 @@ func main() {
         return
     }
     for _, v := range jd.Forecasts {
-        fmt.Printf("%v %v : %v 最高気温：%v  最低気温：%v\n", v.Date, v.Datelabel, v.Telop, v.Temperature.Max.Celsius, v.Temperature.Min.Celsius)
+        fmt.Printf("%v %v: %v  最高気温：%v  最低気温：%v\n", v.Date, v.Datelabel, v.Telop, v.Temperature.Max.Celsius, v.Temperature.Min.Celsius)
     }
 }
 
@@ -67,10 +67,10 @@ func (p *JsonData) JsonProc() (err error){
         return err
     }
 
-    // d := new(JsonData)
     err = json.Unmarshal([]byte(b), &p)
     if err != nil {
         return err
     }
     return nil
 }
+
